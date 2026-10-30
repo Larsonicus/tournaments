@@ -1,0 +1,29 @@
+Summary,Issue Type,Story Points,Labels,Description
+US-01 Регистрация аккаунта,Story,3,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-01"
+US-02 Вход по email и паролю (JWT),Story,2,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-02"
+US-03 Доступ по ролям,Story,2,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-03"
+US-04 Создание турнира,Story,3,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-04"
+US-05 Список турниров с фильтром,Story,2,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-05"
+US-06 Страница турнира,Story,2,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-06"
+US-07 Регистрация игрока на турнир,Story,3,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-07"
+US-08 Отмена регистрации,Story,1,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-08"
+US-09 Старт турнира и генерация сетки,Story,8,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-09"
+US-10 Ввод счёта матча,Story,5,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-10"
+US-11 Продвижение победителя и завершение турнира,Story,3,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-11"
+US-12 Просмотр сетки,Story,5,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-12"
+US-13 Ввод счёта из сетки,Story,3,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-13"
+US-14 Рейтинг Elo,Story,3,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-14"
+US-15 Лидерборд,Story,2,mvp,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-15"
+US-16 Корректировка результата с откатом,Story,8,backlog,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-16"
+US-17 Профиль игрока с историей матчей,Story,3,backlog,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-17"
+US-18 Уведомления о начале матча,Story,5,backlog,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-18"
+US-19 Ручной посев организатором,Story,3,backlog,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-19"
+US-20 Экспорт результатов в CSV,Story,2,backlog,"Критерии приёмки: docs/01-planning/backlog.md, раздел US-20"
+T-01 Каркас монорепо,Task,2,tech,
+T-02 Docker и docker compose,Task,2,tech,
+T-03 CI v1,Task,2,tech,
+T-04 Оптимизация CI,Task,2,tech,
+T-05 Интеграционные и e2e-тесты с порогом покрытия,Task,3,tech,
+T-06 Seed и нагрузочный тест k6,Task,2,tech,
+T-07 Оптимизация по результатам замера,Task,3,tech,
+T-08 CD в GHCR и деплой на VPS,Task,3,tech,
