@@ -26,7 +26,12 @@ export class AuthService {
     }
     const passwordHash = await bcrypt.hash(dto.password, BCRYPT_ROUNDS);
     try {
-      const user = await this.users.create({ email: dto.email, name: dto.name, role: dto.role, passwordHash });
+      const user = await this.users.create({
+        email: dto.email,
+        name: dto.name,
+        role: dto.role,
+        passwordHash,
+      });
       return this.issueToken(user);
     } catch (error) {
       if ((error as { code?: string }).code === UNIQUE_VIOLATION) {

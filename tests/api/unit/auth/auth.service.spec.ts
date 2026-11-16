@@ -4,7 +4,12 @@ import { AuthService } from '../../../../src/api/src/auth/auth.service.js';
 import type { UsersRepository } from '../../../../src/api/src/auth/users.repository.js';
 import { InMemoryUsersRepository } from './in-memory-users.repository.js';
 
-const player = { email: 'player@example.com', password: 'secret123', name: 'Иван', role: 'PLAYER' as const };
+const player = {
+  email: 'player@example.com',
+  password: 'secret123',
+  name: 'Иван',
+  role: 'PLAYER' as const,
+};
 
 describe('AuthService', () => {
   let repo: InMemoryUsersRepository;
@@ -20,7 +25,13 @@ describe('AuthService', () => {
   it('registers a player with rating 1000 and returns a token with id and role', async () => {
     const result = await service.register(player);
 
-    expect(result.user).toEqual({ id: 1, email: player.email, name: 'Иван', role: 'PLAYER', rating: 1000 });
+    expect(result.user).toEqual({
+      id: 1,
+      email: player.email,
+      name: 'Иван',
+      role: 'PLAYER',
+      rating: 1000,
+    });
     expect(jwt.verify(result.accessToken)).toMatchObject({ sub: 1, role: 'PLAYER' });
     expect(repo.items[0].passwordHash).not.toBe(player.password);
   });
@@ -28,7 +39,9 @@ describe('AuthService', () => {
   it('rejects a taken email with 409', async () => {
     await service.register(player);
 
-    await expect(service.register(player)).rejects.toThrow(new ConflictException('Email уже занят'));
+    await expect(service.register(player)).rejects.toThrow(
+      new ConflictException('Email уже занят'),
+    );
   });
 
   it('maps a unique violation from the database to 409', async () => {
@@ -51,7 +64,9 @@ describe('AuthService', () => {
   ])('rejects %s with the same 401 message', async (_case, credentials) => {
     await service.register(player);
 
-    await expect(service.login(credentials)).rejects.toThrow(new UnauthorizedException('Неверный email или пароль'));
+    await expect(service.login(credentials)).rejects.toThrow(
+      new UnauthorizedException('Неверный email или пароль'),
+    );
   });
 
   it('returns the profile of the current user', async () => {

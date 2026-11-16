@@ -17,7 +17,9 @@ class OrganizerOnlyController {
 }
 
 const register = (app: INestApplication<App>, role: string, email = `${role}@example.com`) =>
-  request(app.getHttpServer()).post('/auth/register').send({ email, password: 'secret123', name: role, role });
+  request(app.getHttpServer())
+    .post('/auth/register')
+    .send({ email, password: 'secret123', name: role, role });
 
 describe('Auth HTTP', () => {
   let app: INestApplication<App>;
@@ -32,7 +34,9 @@ describe('Auth HTTP', () => {
       .useValue(new InMemoryUsersRepository())
       .compile();
     app = moduleRef.createNestApplication();
-    app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true }));
+    app.useGlobalPipes(
+      new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true }),
+    );
     await app.init();
   });
 
@@ -50,15 +54,32 @@ describe('Auth HTTP', () => {
       .get('/auth/me')
       .set('Authorization', `Bearer ${login.body.accessToken}`)
       .expect(200)
-      .expect(({ body }) => expect(body).toMatchObject({ email: 'PLAYER@example.com', role: 'PLAYER', rating: 1000 }));
+      .expect(({ body }) =>
+        expect(body).toMatchObject({ email: 'PLAYER@example.com', role: 'PLAYER', rating: 1000 }),
+      );
   });
 
   it.each([
-    ['short password', { email: 'a@example.com', password: 'short', name: 'A', role: 'PLAYER' }, 'password'],
-    ['unknown role', { email: 'b@example.com', password: 'secret123', name: 'B', role: 'ADMIN' }, 'role'],
-    ['invalid email', { email: 'not-an-email', password: 'secret123', name: 'C', role: 'PLAYER' }, 'email'],
+    [
+      'short password',
+      { email: 'a@example.com', password: 'short', name: 'A', role: 'PLAYER' },
+      'password',
+    ],
+    [
+      'unknown role',
+      { email: 'b@example.com', password: 'secret123', name: 'B', role: 'ADMIN' },
+      'role',
+    ],
+    [
+      'invalid email',
+      { email: 'not-an-email', password: 'secret123', name: 'C', role: 'PLAYER' },
+      'email',
+    ],
   ])('rejects %s with 400 naming the field', async (_case, body, field) => {
-    const response = await request(app.getHttpServer()).post('/auth/register').send(body).expect(400);
+    const response = await request(app.getHttpServer())
+      .post('/auth/register')
+      .send(body)
+      .expect(400);
 
     expect(JSON.stringify(response.body.message)).toContain(field);
   });

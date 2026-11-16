@@ -12,7 +12,12 @@ export class InMemoryUsersRepository {
   }
 
   async create(user: NewUser): Promise<User> {
-    const created: User = { id: this.items.length + 1, rating: 1000, createdAt: new Date(), ...user };
+    const created: User = {
+      id: this.items.length + 1,
+      rating: 1000,
+      createdAt: new Date(),
+      ...user,
+    };
     this.items.push(created);
     return created;
   }
