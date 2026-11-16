@@ -26,7 +26,7 @@ pnpm --filter @tournaments/web dev
 - Swagger: http://localhost:3000/api/docs
 - Web: http://localhost:5173 (запросы `/api` проксируются на API)
 
-Подключение к БД задаётся переменной `DATABASE_URL`.
+Переменные окружения API: `DATABASE_URL` — подключение к PostgreSQL, `JWT_SECRET` — секрет подписи токенов.
 
 ## Скрипты
 
