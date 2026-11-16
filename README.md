@@ -13,7 +13,20 @@
 - Node.js 24 (`nvm use`)
 - pnpm через corepack: `corepack enable`
 
-## Запуск
+## Запуск в Docker
+
+```bash
+cp .env.example .env
+docker compose up --build
+```
+
+- Web: http://localhost:8080
+- API: http://localhost:8080/api/health
+- Swagger: http://localhost:8080/api/docs
+
+Поднимаются `db` (PostgreSQL 16), `api` (перед стартом применяет миграции) и `web` (nginx раздаёт сборку и проксирует `/api` в `api`). Порты задаются `WEB_PORT` и `DB_PORT` в `.env`.
+
+## Локальный запуск
 
 ```bash
 pnpm install
